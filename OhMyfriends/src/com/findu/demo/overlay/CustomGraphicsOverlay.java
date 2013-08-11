@@ -45,6 +45,7 @@ public class CustomGraphicsOverlay {
 		
 		mOverlayItemArrayList.removeAll(mOverlayItemArrayList);
 		mGraphicOverLay.removeAll();
+		
 	}
 	
 	public void addGraphicOverlay() {

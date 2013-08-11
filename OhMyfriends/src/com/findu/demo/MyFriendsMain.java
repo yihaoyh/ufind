@@ -239,7 +239,14 @@ public class MyFriendsMain extends Activity implements LocationChangedListener,
 		mLocationAbout.setLocationStop(true);
 		isLocationClientStop = true;
 		mMapView.destroy();
+		if(FriendsApplication.getInstance().mBMapManager!=null)
+		{
+			Log.v(FriendsApplication.TAG, "destroy BMapManager");
+			FriendsApplication.getInstance().mBMapManager.destroy();
+			FriendsApplication.getInstance().mBMapManager = null;
+		}
 		super.onDestroy();
+		System.exit(0);
 	}
 
 	@Override

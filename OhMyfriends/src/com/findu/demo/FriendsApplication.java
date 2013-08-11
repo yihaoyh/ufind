@@ -7,6 +7,7 @@ import com.baidu.mapapi.map.MKEvent;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 public class FriendsApplication extends Application {
@@ -14,11 +15,12 @@ public class FriendsApplication extends Application {
 	private static FriendsApplication mInstance = null;
     public boolean m_bKeyRight = true;
     public BMapManager mBMapManager = null;
-    
+    public static String TAG = FriendsApplication.class.getName();
     public static final String strKey = "EF327741BE0E40770FC97D2608419E4700A62E2B";
     
     @Override
     public void onCreate() {
+    	Log.v(TAG, "onCreate");
 	    super.onCreate();
 		mInstance = this;
 		initEngineManager(this);
