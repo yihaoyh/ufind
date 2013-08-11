@@ -24,6 +24,7 @@ import com.baidu.mapapi.search.MKDrivingRouteResult;
 import com.baidu.mapapi.search.MKPoiResult;
 import com.baidu.mapapi.search.MKRoute;
 import com.baidu.mapapi.search.MKSuggestionResult;
+import com.baidu.mapapi.search.MKTransitRoutePlan;
 import com.baidu.mapapi.search.MKTransitRouteResult;
 import com.baidu.mapapi.search.MKWalkingRouteResult;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
@@ -57,7 +58,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class MyFriendsMain extends Activity implements LocationChangedListener,
 		ItemOverlayOnTapListener, RouteSearchListener {
 
-	private final String TAG = "MyFriends";
+	private final String TAG = "MyFriendsMain";
 	private final int DIANMEN_LATITUDE = (int) (39.97923 * 1E6);
 	private final int DIANMEN_LONGITUDE = (int) (39.97923 * 1E6);
 	LocationAbout mLocationAbout;
@@ -449,9 +450,16 @@ public class MyFriendsMain extends Activity implements LocationChangedListener,
 	@Override
 	public void onGetTransitRouteResult(MKTransitRouteResult routeResult,
 			int arg1) {
-
-		MKRoute route = routeResult.getPlan(0).getRoute(0);
+		MKTransitRoutePlan plan = routeResult.getPlan(0);
+		MKRoute route = plan.getRoute(0);
+		
+		
 		mRouteOverlay.mTransitOverlay.setData(routeResult.getPlan(0));
+		Log.v(TAG, plan.getContent());
+		for(int i=0; i<plan.getNumLines(); i++)
+		{
+			Log.v(TAG, plan.getLine(i).getTitle());
+		}
 		ArrayList<ArrayList<GeoPoint>> pointList = route.getArrayPoints();
 
 		int totlePt = 0;
